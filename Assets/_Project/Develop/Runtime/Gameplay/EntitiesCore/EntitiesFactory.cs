@@ -55,6 +55,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddIsMoving()
                 .AddRotationDirection()
                 .AddRotationSpeed(new ReactiveVariable<float>(config.RotationSpeed))
+                .AddGravityForce(new ReactiveVariable<float>(config.GravityForce))
                 .AddMaxHealth(new ReactiveVariable<float>(baseStats[StatTypes.MaxHealth]))
                 .AddCurrentHealth(new ReactiveVariable<float>(baseStats[StatTypes.MaxHealth]))
                 .AddIsDead()

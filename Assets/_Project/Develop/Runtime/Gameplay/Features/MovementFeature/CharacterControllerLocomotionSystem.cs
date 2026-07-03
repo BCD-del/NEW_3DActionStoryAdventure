@@ -18,6 +18,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
 
         private ReactiveVariable<bool> _isMoving;
 
+        private ReactiveVariable<float> _gravityForce;
+
         private ICompositeCondition _canMove;
 
         public void OnInit(Entity entity)
@@ -27,12 +29,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
 
             _moveSpeed = entity.MoveSpeed;
             _rotationSpeed = entity.RotationSpeed;
+            _gravityForce = entity.GravityForce;
 
             _characterController = entity.CharacterController;
 
             _isMoving = entity.IsMoving;
 
             _canMove = entity.CanMove;
+
+            
         }
 
         public void OnUpdate(float deltaTime)
@@ -48,6 +53,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
             Vector3 velocity = moveDir.normalized * _moveSpeed.Value;
 
             _characterController.Move(velocity * deltaTime);
+
+            _characterController.SimpleMove(new Vector3(0, _gravityForce.Value, 0) * Time.deltaTime);   // Под Вопросом
 
             _isMoving.Value = velocity.sqrMagnitude > 0.001f;
 
