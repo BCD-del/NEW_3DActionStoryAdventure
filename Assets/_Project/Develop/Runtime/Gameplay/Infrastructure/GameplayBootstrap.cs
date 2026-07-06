@@ -1,6 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
+using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
 using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
+using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
 using Assets._Project.Develop.Runtime.Gameplay.States;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
@@ -29,6 +32,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
         private MainHeroHolderService _mainHeroHolderService;
 
+        private EntityConfig _entityConfig;
+
+        private GhostConfig _hostConfig;
+
+        
+
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
             _container = container;
@@ -39,6 +48,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             _inputArgs = gameplayInputArgs;
 
             GameplayContextRegistrations.Process(_container, _inputArgs);
+
+            
         }
 
         public override IEnumerator Initialize()
@@ -61,6 +72,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             // hero
             _container.Resolve<MainHeroFactory>().Create(Vector3.up * 20);
 
+            EnemiesFactory enemiesFactory = _container.Resolve<EnemiesFactory>();
+            Entity enemy = enemiesFactory.Create(new Vector3(0,00), _hostConfig);
+
+
             yield break;
         }
 
@@ -68,15 +83,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         {
             Debug.Log("Старт геймплейной сцены");
 
-            // _gameplayStatesContext.Run();
+            // _gameplayStatesContext.Run();//
         }
 
         private void Update()
         {
-            /*
-            _brainsContext?.Update(Time.deltaTime);
-            _gameplayStatesContext?.Update(Time.deltaTime);
-            */
+            
+            //_brainsContext?.Update(Time.deltaTime);//
+           // _gameplayStatesContext?.Update(Time.deltaTime);//
+            
 
             _entitiesLifeContext?.Update(Time.deltaTime);
 

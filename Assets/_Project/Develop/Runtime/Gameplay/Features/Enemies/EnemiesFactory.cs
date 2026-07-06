@@ -35,13 +35,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies
 
             switch (config)
             {
-                case GhostConfig ghostConfig:
+                
+                case GhostConfig ghostConfig: // тут проблема
                     entity = _entitiesFactory.CreateGhost(position, ghostConfig);
                     _brainsFactory.CreateGhostBrain(entity);
                     break;
 
                 default:
-                    throw new ArgumentException($"Not support {config.GetType()} type config");
+                   // throw new ArgumentException($"Not support {config.GetType()} type config");
+                    throw new ArgumentException($"Entity Config is the proble");
             }
 
             AddDropLootBehaviourTo(entity);

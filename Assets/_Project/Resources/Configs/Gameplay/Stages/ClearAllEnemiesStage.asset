@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe901a5e98ed044be62a8fdd1ccf88, type: 3}
   m_Name: ClearAllEnemiesStage
   m_EditorClassIdentifier: 
-  _enemyItems: []
+  _enemyItems:
+  - <SpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 5b141a02f0d5d794799251f032d52d73, type: 2}
