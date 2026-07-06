@@ -1,4 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States;
 using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
@@ -73,6 +73,60 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
 
             return brain;
         }
+
+
+        public StateMachineBrain CreateSwordsmanBrain(Entity entity, float attackRange)
+        {
+            ITargetSelector targetSelector = new NearestDamageableTargetSelector(entity);
+
+            AIStateMachine behaviour = CreateChaseAndAttackStateMachine(entity, attackRange);
+
+            FindTargetState findTargetState = new FindTargetState(targetSelector, _entitiesLifeContext, entity);
+            AIParallelState parallelState = new AIParallelState(findTargetState, behaviour);
+
+            AIStateMachine rootStateMachine = new AIStateMachine();
+            rootStateMachine.AddState(parallelState);
+
+            StateMachineBrain brain = new StateMachineBrain(rootStateMachine);
+            _brainsContext.SetFor(entity, brain);
+
+            return brain;
+        }
+
+        public StateMachineBrain CreateArcherBrain(Entity entity, float attackRange)
+        {
+            // Архитектурно лучник — это тот же самый "подбежать и атаковать", просто с большим attackRange.
+            // Различие между видами врагов задаётся только через конфиг (EntityConfig), а не через отдельный тип мозга.
+            return CreateSwordsmanBrain(entity, attackRange);
+        }
+
+        private AIStateMachine CreateChaseAndAttackStateMachine(Entity entity, float attackRange)
+        {
+            MoveToTargetState moveToTargetState = new MoveToTargetState(entity, attackRange);
+            AIStateMachine combatState = CreateAutoAttackStateMachine(entity);
+
+            ReactiveVariable<Entity> currentTarget = entity.CurrentTarget;
+            Transform transform = entity.Transform;
+
+            ICondition inAttackRangeCondition = new FuncCondition(() =>
+                currentTarget.Value != null &&
+                Vector3.Distance(transform.position, currentTarget.Value.Transform.position) <= attackRange);
+
+            ICondition outOfAttackRangeCondition = new FuncCondition(() =>
+                currentTarget.Value == null ||
+                Vector3.Distance(transform.position, currentTarget.Value.Transform.position) > attackRange);
+
+            AIStateMachine behaviour = new AIStateMachine();
+
+            behaviour.AddState(moveToTargetState);
+            behaviour.AddState(combatState);
+
+            behaviour.AddTransition(moveToTargetState, combatState, inAttackRangeCondition);
+            behaviour.AddTransition(combatState, moveToTargetState, outOfAttackRangeCondition);
+
+            return behaviour;
+        }
+
 
         private AIStateMachine CreateRandomMovementStateMachine(Entity entity)
         {

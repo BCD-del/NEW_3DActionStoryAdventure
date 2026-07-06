@@ -1,7 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
+using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
+using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
+using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrategies;
+using System.Collections.Generic;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
 using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
 using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
@@ -216,7 +219,19 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
         private static EnemiesFactory CreateEnemiesFactory(DIContainer c)
         {
-            return new EnemiesFactory(c);
+            EntitiesFactory entitiesFactory = c.Resolve<EntitiesFactory>();
+            BrainsFactory brainsFactory = c.Resolve<BrainsFactory>();
+
+            // Каждый вид врага регистрируется тут одной строкой.
+            // EnemiesFactory при этом не меняется вообще - просто перебирает стратегии и находит подходящую под конфиг.
+            List<IEnemySpawnStrategy> spawnStrategies = new List<IEnemySpawnStrategy>
+            {
+                new GhostSpawnStrategy(entitiesFactory, brainsFactory),
+                new SwordsmanSpawnStrategy(entitiesFactory, brainsFactory),
+                new ArcherSpawnStrategy(entitiesFactory, brainsFactory),
+            };
+
+            return new EnemiesFactory(c, spawnStrategies);
         }
 
         private static MainHeroFactory CreateMainHeroFactory(DIContainer c)

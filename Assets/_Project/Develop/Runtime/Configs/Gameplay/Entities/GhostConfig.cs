@@ -12,5 +12,6 @@ namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
         [field: SerializeField, Min(0)] public float BodyContactDamage { get; private set; } = 50;
         [field: SerializeField, Min(0)] public float DeathProcessTime { get; private set; } = 2;
         [field: SerializeField, Min(0)] public float SpawnProcessTime { get; private set; } = 2;
+         public Rigidbody Rigidbody { get; private set; }
     }
 }

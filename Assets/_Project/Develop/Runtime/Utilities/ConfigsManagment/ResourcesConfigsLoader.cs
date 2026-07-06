@@ -27,6 +27,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.ConfigsManagment
             {typeof(LootListConfig), "Configs/Gameplay/Loot/LootListConfig" },
 
             {typeof(MainHeroConfig), "Configs/Gameplay/Entities/Characters/MainHeroConfig" },
+
+            {typeof(GhostConfig), "Configs/Gameplay/Entities/Characters/GhostConfig" },
+            {typeof(ArcherConfig), "Configs/Gameplay/Entities/Characters/ArcherConfig" },
+            {typeof(SwordsmanConfig), "Configs/Gameplay/Entities/Characters/SwordsmanConfig" },
+
             {typeof(PlayerStatsUpgradeConfig), "Configs/Meta/Stats/PlayerStatsUpgradeConfig" },
 
             {typeof(AbilitiesConfigsContainer), "Configs/Gameplay/Abilities/AbilitiesConfigsContainer" },

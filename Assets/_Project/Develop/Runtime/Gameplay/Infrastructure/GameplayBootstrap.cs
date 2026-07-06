@@ -1,4 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
+using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
@@ -33,10 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private MainHeroHolderService _mainHeroHolderService;
 
         private EntityConfig _entityConfig;
-
-        private GhostConfig _hostConfig;
-
-        
+  
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
@@ -72,10 +69,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             // hero
             _container.Resolve<MainHeroFactory>().Create(Vector3.up * 20);
 
-            EnemiesFactory enemiesFactory = _container.Resolve<EnemiesFactory>();
-            Entity enemy = enemiesFactory.Create(new Vector3(0,00), _hostConfig);
-
-
             yield break;
         }
 
@@ -83,14 +76,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         {
             Debug.Log("Старт геймплейной сцены");
 
-            // _gameplayStatesContext.Run();//
+            _gameplayStatesContext.Run();
         }
 
         private void Update()
         {
             
-            //_brainsContext?.Update(Time.deltaTime);//
-           // _gameplayStatesContext?.Update(Time.deltaTime);//
+            _brainsContext?.Update(Time.deltaTime);
+           _gameplayStatesContext?.Update(Time.deltaTime);
             
 
             _entitiesLifeContext?.Update(Time.deltaTime);

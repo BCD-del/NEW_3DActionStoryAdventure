@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca52079823ff5a4584c629e27c1d396, type: 3}
+  m_Name: SwordsmanConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Configs.Gameplay.Entities.SwordsmanConfig
+  <PrefabPath>k__BackingField: Entities/Swordsman
+  <MoveSpeed>k__BackingField: 6
+  <RotationSpeed>k__BackingField: 720
+  <MaxHealth>k__BackingField: 120
+  <DeathProcessTime>k__BackingField: 2
+  <AttackRange>k__BackingField: 2
+  <AttackProcessTime>k__BackingField: 1
+  <AttackDelayTime>k__BackingField: 0.35
+  <AttackCooldown>k__BackingField: 0.5
+  <AttackDamage>k__BackingField: 25
