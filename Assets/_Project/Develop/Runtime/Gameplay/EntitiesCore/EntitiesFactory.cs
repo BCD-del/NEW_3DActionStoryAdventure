@@ -3,7 +3,6 @@ using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
-using Assets._Project.Develop.Runtime.Gameplay.Features.BounceFeature;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Camera;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage;
 using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
@@ -81,7 +80,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddAttackCooldownModifiedTime(new ReactiveVariable<float>(config.AttackCooldown))
                 .AddAttackCooldownCurrentTime()
                 .AddInAttackCooldown()
-                .AddAttacksPerSecond(new ReactiveVariable<float>(baseStats[StatTypes.AttacksPerSecond]));
+                .AddAttacksPerSecond(new ReactiveVariable<float>(baseStats[StatTypes.AttacksPerSecond]))
+                //Моё  
+                .AddStartClimbingRequest()
+                .AddStartClimbingEvent()
+                .AddInClimbingProcess();
+                
+
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -108,6 +113,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             ICompositeCondition mustCancelAttack = new CompositeCondition(LogicOperations.Or)
                 .Add(new FuncCondition(() => entity.IsDead.Value))
                 .Add(new FuncCondition(() => entity.IsMoving.Value));
+            //
+            ICompositeCondition canStartClimbing = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InDeathProcess.Value == false));
 
             entity
                 .AddCanMove(canMove)
@@ -116,7 +125,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddMustSelfRelease(mustSelfRelease)
                 .AddCanApplyDamage(canApplyDamage)
                 .AddCanStartAttack(canStartAttack)
-                .AddMustCancelAttack(mustCancelAttack);
+                .AddMustCancelAttack(mustCancelAttack)
+                //
+                .AddCanStartClimbing(canStartClimbing);
 
             entity
                 .AddSystem(new PlayerInputSystem(_container.Resolve<IInputService>(), _container.Resolve<CameraService>()))
@@ -174,8 +185,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddBodyContactDamage(new ReactiveVariable<float>(config.BodyContactDamage))
                 .AddSpawnInitialTime(new ReactiveVariable<float>(config.SpawnProcessTime))
                 .AddSpawnCurrentTime()
-                .AddInSpawnProcess(); 
-                 
+                .AddInSpawnProcess();
+
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
@@ -241,7 +252,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddCurrentTarget(new ReactiveVariable<Entity>(null));
-            
+
 
             AddAttackPipelineComponents(
                 entity,
@@ -321,7 +332,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddCurrentTarget(new ReactiveVariable<Entity>(null));
-                
+
 
             AddAttackPipelineComponents(
                 entity,

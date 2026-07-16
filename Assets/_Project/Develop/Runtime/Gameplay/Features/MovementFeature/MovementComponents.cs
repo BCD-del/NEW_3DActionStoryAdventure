@@ -5,6 +5,26 @@ using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
 {
+  
+    public class StartClimbingRequest : IEntityComponent
+    {
+        public ReactiveEvent Value;
+    }
+
+    public class StartClimbingEvent : IEntityComponent
+    {
+        public ReactiveEvent Value;
+    }
+
+    public class InClimbingProcess : IEntityComponent
+    {
+        public ReactiveVariable<bool> Value;
+    }
+
+    public class CanStartClimbing : IEntityComponent
+    {
+        public ICompositeCondition Value;
+    }
 
     public class GravityForce : IEntityComponent
     {

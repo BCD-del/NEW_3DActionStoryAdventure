@@ -337,6 +337,97 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = value}); 
 		}
 
+		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingRequest StartClimbingRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingRequest>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent StartClimbingRequest => StartClimbingRequestC.Value;
+
+		public bool TryGetStartClimbingRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingRequest component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+			return result;
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartClimbingRequest()
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingRequest() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() }); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartClimbingRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingRequest() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingEvent StartClimbingEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingEvent>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent StartClimbingEvent => StartClimbingEventC.Value;
+
+		public bool TryGetStartClimbingEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+			return result;
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartClimbingEvent()
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingEvent() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() }); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartClimbingEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.StartClimbingEvent() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.InClimbingProcess InClimbingProcessC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.InClimbingProcess>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InClimbingProcess => InClimbingProcessC.Value;
+
+		public bool TryGetInClimbingProcess(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.InClimbingProcess component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInClimbingProcess()
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.InClimbingProcess() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInClimbingProcess(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.InClimbingProcess() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanStartClimbing CanStartClimbingC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanStartClimbing>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanStartClimbing => CanStartClimbingC.Value;
+
+		public bool TryGetCanStartClimbing(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanStartClimbing component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanStartClimbing(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanStartClimbing() {Value = value}); 
+		}
+
 		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.GravityForce GravityForceC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.GravityForce>();
 
 		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> GravityForce => GravityForceC.Value;
