@@ -252,7 +252,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
             AttachView(entity, position, config.PrefabPath, view);
 
-            entity.SpotDistance = config.SpotRangeDistance;
+            entity.SpotDistance.Value = config.SpotRangeDistance;
 
             entity
                 .AddMoveDirection()
@@ -334,7 +334,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
             AttachView(entity, position, config.PrefabPath, view);
 
-            entity.SpotDistance = config.SpotRangeDistance;
+            entity.SpotDistance.Value = config.SpotRangeDistance;
 
             entity
                 .AddMoveDirection()

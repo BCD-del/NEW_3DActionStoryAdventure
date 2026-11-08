@@ -19,7 +19,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
         {
             _source = entity;
             _sourceTransform = entity.Transform;
-            _spotDistance = entity.SpotDistance;
+            _spotDistance = entity.SpotDistance.Value;
         }
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)

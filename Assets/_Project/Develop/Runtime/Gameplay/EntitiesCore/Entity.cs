@@ -24,8 +24,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
         public bool IsInit => _isInit;
 
-        public float SpotDistance { get; set; } = 20f;
-
         public void Initialize()
         {
             foreach (IInitializableSystem initializable in _initializables)
