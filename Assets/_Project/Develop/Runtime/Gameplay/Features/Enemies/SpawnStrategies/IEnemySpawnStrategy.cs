@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrategies
@@ -10,6 +11,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrateg
     {
         bool CanHandle(EntityConfig config);
 
-        Entity Create(Vector3 position, EntityConfig config);
+        Entity Create(Vector3 position, EntityConfig config, MonoEntity view = null);
     }
 }

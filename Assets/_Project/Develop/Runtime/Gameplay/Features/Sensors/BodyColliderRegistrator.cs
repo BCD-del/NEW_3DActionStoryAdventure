@@ -10,6 +10,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Sensors
 
         public override void Register(Entity entity)
         {
+            if (_body == null)
+            {
+                Debug.LogWarning($"{name}: у {nameof(BodyColliderRegistrator)} не назначен CapsuleCollider — контактный урон тела отключён", this);
+                return;
+            }
+
             entity.AddBodyCollider(_body);
         }
     }

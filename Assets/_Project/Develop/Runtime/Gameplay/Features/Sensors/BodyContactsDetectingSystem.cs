@@ -17,11 +17,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Sensors
             _contacts = entity.ContactCollidersBuffer;
             _mask = entity.ContactsDetectingMask;
 
-            _body = entity.BodyCollider;
+            _body = entity.TryGetBodyCollider(out CapsuleCollider body) ? body : null;
         }
 
         public void OnUpdate(float deltaTime)
         {
+            if (_body == null)
+                return;
+
             _contacts.Count = Physics.OverlapCapsuleNonAlloc(
                 _body.bounds.min,
                 _body.bounds.max,

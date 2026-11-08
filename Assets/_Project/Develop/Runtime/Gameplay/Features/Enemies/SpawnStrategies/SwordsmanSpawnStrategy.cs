@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using UnityEngine;
 
@@ -18,11 +19,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrateg
 
         public bool CanHandle(EntityConfig config) => config is SwordsmanConfig;
 
-        public Entity Create(Vector3 position, EntityConfig config)
+        public Entity Create(Vector3 position, EntityConfig config, MonoEntity view = null)
         {
             SwordsmanConfig swordsmanConfig = (SwordsmanConfig)config;
 
-            Entity entity = _entitiesFactory.CreateSwordsman(position, swordsmanConfig);
+            Entity entity = _entitiesFactory.CreateSwordsman(position, swordsmanConfig, view);
             _brainsFactory.CreateSwordsmanBrain(entity, swordsmanConfig.AttackRange);
             return entity;
         }

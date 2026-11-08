@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using UnityEngine;
 
@@ -18,11 +19,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrateg
 
         public bool CanHandle(EntityConfig config) => config is ArcherConfig;
 
-        public Entity Create(Vector3 position, EntityConfig config)
+        public Entity Create(Vector3 position, EntityConfig config, MonoEntity view = null)
         {
             ArcherConfig archerConfig = (ArcherConfig)config;
 
-            Entity entity = _entitiesFactory.CreateArcher(position, archerConfig);
+            Entity entity = _entitiesFactory.CreateArcher(position, archerConfig, view);
             _brainsFactory.CreateArcherBrain(entity, archerConfig.AttackRange);
             return entity;
         }

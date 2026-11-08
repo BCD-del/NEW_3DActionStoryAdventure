@@ -37,11 +37,19 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             _collidersRegistryService = _container.Resolve<CollidersRegistryService>();
         }
 
-        public Entity CreateMainHero(Vector3 position, MainHeroConfig config, Dictionary<StatTypes, float> baseStats)
+        private void AttachView(Entity entity, Vector3 position, string prefabPath, MonoEntity view)
+        {
+            if (view != null)
+                _monoEntitiesFactory.Attach(entity, view);
+            else
+                _monoEntitiesFactory.Create(entity, position, prefabPath);
+        }
+
+        public Entity CreateMainHero(Vector3 position, MainHeroConfig config, Dictionary<StatTypes, float> baseStats, MonoEntity view = null)
         {
             Entity entity = CreateEmpty();
 
-            _monoEntitiesFactory.Create(entity, position, config.PrefabPath);
+            AttachView(entity, position, config.PrefabPath, view);
 
             Dictionary<StatTypes, float> modifiedStats = new(baseStats);
 
@@ -167,11 +175,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             return entity;
         }
 
-        public Entity CreateGhost(Vector3 position, GhostConfig config)
+        public Entity CreateGhost(Vector3 position, GhostConfig config, MonoEntity view = null)
         {
             Entity entity = CreateEmpty();
 
-            _monoEntitiesFactory.Create(entity, position, config.PrefabPath);
+            AttachView(entity, position, config.PrefabPath, view);
 
             entity
                 .AddMoveDirection()
@@ -239,11 +247,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
         }
 
 
-        public Entity CreateSwordsman(Vector3 position, SwordsmanConfig config)
+        public Entity CreateSwordsman(Vector3 position, SwordsmanConfig config, MonoEntity view = null)
         {
             Entity entity = CreateEmpty();
 
-            _monoEntitiesFactory.Create(entity, position, config.PrefabPath);
+            AttachView(entity, position, config.PrefabPath, view);
 
             entity
                 .AddMoveDirection()
@@ -319,11 +327,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             return entity;
         }
 
-        public Entity CreateArcher(Vector3 position, ArcherConfig config)
+        public Entity CreateArcher(Vector3 position, ArcherConfig config, MonoEntity view = null)
         {
             Entity entity = CreateEmpty();
 
-            _monoEntitiesFactory.Create(entity, position, config.PrefabPath);
+            AttachView(entity, position, config.PrefabPath, view);
 
             entity
                 .AddMoveDirection()

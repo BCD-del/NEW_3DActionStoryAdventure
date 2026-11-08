@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
 using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
@@ -67,7 +68,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             _screenPresenter = _container.Resolve<GameplayScreenPresenter>();
 
             // hero
-            _container.Resolve<MainHeroFactory>().Create(Vector3.up * 20);
+            SceneMainHero sceneMainHero = FindFirstObjectByType<SceneMainHero>(FindObjectsInactive.Include);
+
+            if (sceneMainHero != null)
+                _container.Resolve<MainHeroFactory>().Create(sceneMainHero.transform.position, sceneMainHero.GetComponent<MonoEntity>());
+            else
+                _container.Resolve<MainHeroFactory>().Create(Vector3.up * 20);
+
+            // enemies placed on the scene
+            _container.Resolve<SceneEntitiesSpawner>().SpawnEnemies();
 
             yield break;
         }

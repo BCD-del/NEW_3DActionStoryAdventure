@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Develop.Runtime.Configs.Gameplay;
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States;
@@ -37,11 +38,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
             _statsUpgradeService = _container.Resolve<StatsUpgradeService>();
         }
 
-        public Entity Create(Vector3 position)
+        public Entity Create(Vector3 position, MonoEntity view = null)
         {
             MainHeroConfig config = _configsProviderService.GetConfig<MainHeroConfig>();
 
-            Entity entity = _entitiesFactory.CreateMainHero(position, config, GetStats());
+            Entity entity = _entitiesFactory.CreateMainHero(position, config, GetStats(), view);
 
             entity
                 .AddIsMainHero()

@@ -49,6 +49,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateMainHeroFactory);
             container.RegisterAsSingle(CreateEnemiesFactory);
+            container.RegisterAsSingle(CreateSceneEntitiesSpawner);
 
             container.RegisterAsSingle(CreateStagesFactory);
             container.RegisterAsSingle(CreateStageProviderService);
@@ -236,6 +237,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static MainHeroFactory CreateMainHeroFactory(DIContainer c)
         {
             return new MainHeroFactory(c);
+        }
+
+        private static SceneEntitiesSpawner CreateSceneEntitiesSpawner(DIContainer c)
+        {
+            return new SceneEntitiesSpawner(c.Resolve<EnemiesFactory>());
         }
 
         private static UnityInputService CreateDesktopInput(DIContainer c)

@@ -2,6 +2,7 @@ using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrategies;
 using System.Collections.Generic;
 using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature;
 using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
@@ -35,10 +36,23 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies
 
         public Entity Create(Vector3 position, EntityConfig config)
         {
+            return CreateInternal(position, config, null);
+        }
+
+        public Entity Create(MonoEntity view, EntityConfig config)
+        {
+            if (view == null)
+                throw new ArgumentNullException(nameof(view));
+
+            return CreateInternal(view.transform.position, config, view);
+        }
+
+        private Entity CreateInternal(Vector3 position, EntityConfig config, MonoEntity view)
+        {
             Debug.Log($"Spawning enemy with config: {(config == null ? "NULL" : config.name)}");
             IEnemySpawnStrategy strategy = FindStrategyFor(config);
 
-            Entity entity = strategy.Create(position, config);
+            Entity entity = strategy.Create(position, config, view);
 
             AddDropLootBehaviourTo(entity);
 
