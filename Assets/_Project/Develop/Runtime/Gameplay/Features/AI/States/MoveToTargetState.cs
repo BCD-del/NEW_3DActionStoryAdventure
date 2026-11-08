@@ -10,6 +10,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
     public class MoveToTargetState : State, IUpdatableState
     {
         private readonly ReactiveVariable<Vector3> _moveDirection;
+        private readonly ReactiveVariable<Vector3> _rotationDirection;
         private readonly ReactiveVariable<bool> _isMoving;
         private readonly ReactiveVariable<Entity> _currentTarget;
         private readonly Transform _transform;
@@ -18,6 +19,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
         public MoveToTargetState(Entity entity, float stopDistance)
         {
             _moveDirection = entity.MoveDirection;
+            _rotationDirection = entity.RotationDirection;
             _isMoving = entity.IsMoving;
             _currentTarget = entity.CurrentTarget;
             _transform = entity.Transform;
@@ -28,7 +30,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
         {
             base.Exit();
 
-            _isMoving.Value = false; 
+            Stop();
         }
 
         public void Update(float deltaTime)
@@ -37,7 +39,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
 
             if (target == null)
             {
-                _isMoving.Value = false;
+                Stop();
                 return;
             }
 
@@ -46,12 +48,23 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
 
             if (toTarget.magnitude <= _stopDistance)
             {
-                _isMoving.Value = false;
+                Stop();
                 return;
             }
 
-            _moveDirection.Value = toTarget.normalized;
+            Vector3 direction = toTarget.normalized;
+
+            _moveDirection.Value = direction;
+            _rotationDirection.Value = direction;
             _isMoving.Value = true;
+        }
+
+        // Обнуляем направление, иначе RigidbodyMovementSystem продолжает
+        // толкать врага по старому вектору, пока он стоит и бьёт.
+        private void Stop()
+        {
+            _moveDirection.Value = Vector3.zero;
+            _isMoving.Value = false;
         }
     }
 }

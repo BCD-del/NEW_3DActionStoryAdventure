@@ -20,16 +20,16 @@ MonoBehaviour:
     <UpgradeToNextLevelCost>k__BackingField: 32000000
   - <Type>k__BackingField: 2
     <StatValues>k__BackingField:
-    - 10
+    - 100
     <CostType>k__BackingField: 0
     <UpgradeToNextLevelCost>k__BackingField: 32000000
   - <Type>k__BackingField: 3
     <StatValues>k__BackingField:
-    - 10
+    - 25
     <CostType>k__BackingField: 0
     <UpgradeToNextLevelCost>k__BackingField: 32000000
   - <Type>k__BackingField: 4
     <StatValues>k__BackingField:
-    - 10
+    - 1
     <CostType>k__BackingField: 0
     <UpgradeToNextLevelCost>k__BackingField: 32000000

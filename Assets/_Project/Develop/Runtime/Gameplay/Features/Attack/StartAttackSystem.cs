@@ -12,6 +12,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
         private ReactiveEvent _startAttackRequest;
         private ReactiveEvent _startAttackEvent;
         private ReactiveVariable<bool> _inAttackProcess;
+        private ReactiveVariable<bool> _inAttackCooldown;
+        private ReactiveVariable<bool> _isDead;
         private ICompositeCondition _canStartAttack;
 
         private IDisposable _attackRequestDispose;
@@ -22,6 +24,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
             _startAttackEvent = entity.StartAttackEvent;
             _inAttackProcess = entity.InAttackProcess;
             _canStartAttack = entity.CanStartAttack;
+
+            entity.TryGetInAttackCooldown(out _inAttackCooldown);
+            entity.TryGetIsDead(out _isDead);
 
             _attackRequestDispose = _startAttackRequest.Subscribe(OnAttackRequest);
         }
@@ -36,7 +41,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
             }
             else
             {
-                Debug.Log("Не могу атаковать!");
+                Debug.Log($"Не могу атаковать! мёртв: {_isDead?.Value}, в процессе атаки: {_inAttackProcess.Value}, кулдаун: {_inAttackCooldown?.Value}");
             }
         }
 

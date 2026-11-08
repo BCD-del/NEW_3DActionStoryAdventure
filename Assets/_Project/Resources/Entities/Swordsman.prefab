@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: -8304465215633614877}
   - component: {fileID: -6942070940071491132}
   - component: {fileID: -7188982527273230631}
+  - component: {fileID: 93919082104593710}
   m_Layer: 0
   m_Name: Swordsman
   m_TagString: Untagged
@@ -203,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb161fe125109a0479eda97691719844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeathRegistrator
-  _colliders: []
+  _colliders:
+  - {fileID: 2172964770302104379}
 --- !u!114 &-6762960844506497532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +270,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2354a52f68bcd87468567267d18caac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Common.RigidbodyEntityRegistrator
+--- !u!114 &93919082104593710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728636747347844221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da883d25e186a94a842e7a65197148f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SceneEnemy
+  _config: {fileID: 11400000, guid: 18b2ff78914ad3d408cb2260f2d10e97, type: 2}

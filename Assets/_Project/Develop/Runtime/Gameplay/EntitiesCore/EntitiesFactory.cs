@@ -2,6 +2,7 @@ using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
+using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Melee;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Camera;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage;
@@ -119,12 +120,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             ICompositeCondition canStartAttack = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
                 .Add(new FuncCondition(() => entity.InAttackProcess.Value == false))
-                .Add(new FuncCondition(() => entity.IsMoving.Value == false))
                 .Add(new FuncCondition(() => entity.InAttackCooldown.Value == false));
 
             ICompositeCondition mustCancelAttack = new CompositeCondition(LogicOperations.Or)
-                .Add(new FuncCondition(() => entity.IsDead.Value))
-                .Add(new FuncCondition(() => entity.IsMoving.Value));
+                .Add(new FuncCondition(() => entity.IsDead.Value));
             //
             ICompositeCondition canStartClimbing = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
@@ -157,7 +156,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddSystem(new AttackCancelSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this))
+                .AddSystem(new MeleeAttackSystem(_collidersRegistryService))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
 
@@ -165,7 +164,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
                 .AddSystem(new BodyContactsDetectingSystem())
                 .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
-                .AddSystem(new DealDamageOnContactSystem())                .AddSystem(new ApplyDamageSystem())
+                .AddSystem(new DealDamageOnContactSystem())
 
                 .AddSystem(new DeathSystem())
                 .AddSystem(new DisableCollidersOnDeathSystem())
@@ -314,7 +313,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this))
+                .AddSystem(new MeleeAttackSystem(_collidersRegistryService))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
 
@@ -394,7 +393,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this))
+                .AddSystem(new MeleeAttackSystem(_collidersRegistryService))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
 
