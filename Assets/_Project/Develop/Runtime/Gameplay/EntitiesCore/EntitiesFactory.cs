@@ -93,12 +93,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddContactsDetectingMask(Layers.CharactersMask)
                 .AddContactCollidersBuffer(new Buffer<Collider>(64))
                 .AddContactEntitiesBuffer(new Buffer<Entity>(64))
-                .AddBodyContactDamage(new ReactiveVariable<float>(baseStats[StatTypes.Damage]))          
+                .AddBodyContactDamage(new ReactiveVariable<float>(baseStats[StatTypes.Damage]))
                 //Моё  
                 .AddStartClimbingRequest()
                 .AddStartClimbingEvent()
                 .AddInClimbingProcess();
-                
+
 
 
             ICompositeCondition canMove = new CompositeCondition()
@@ -252,9 +252,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
             AttachView(entity, position, config.PrefabPath, view);
 
-            entity.SpotDistance.Value = config.SpotRangeDistance;
+
 
             entity
+                .AddSpotDistance(new ReactiveVariable<float>(config.SpotRangeDistance))
                 .AddMoveDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
                 .AddIsMoving()
@@ -337,6 +338,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             entity.SpotDistance.Value = config.SpotRangeDistance;
 
             entity
+                .AddSpotDistance(new ReactiveVariable<float>(config.SpotRangeDistance))
                 .AddMoveDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
                 .AddIsMoving()
