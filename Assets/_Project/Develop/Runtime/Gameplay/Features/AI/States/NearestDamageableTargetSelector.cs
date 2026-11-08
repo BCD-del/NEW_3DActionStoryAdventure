@@ -15,11 +15,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
         private Transform _sourceTransform;
         private readonly float _spotDistance;
 
-        public NearestDamageableTargetSelector(Entity entity, float spotDistance = 20f)
+        public NearestDamageableTargetSelector(Entity entity)
         {
             _source = entity;
             _sourceTransform = entity.Transform;
-            _spotDistance = spotDistance;
+            _spotDistance = entity.SpotDistance;
         }
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)

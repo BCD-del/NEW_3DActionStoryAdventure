@@ -24,7 +24,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrateg
             ArcherConfig archerConfig = (ArcherConfig)config;
 
             Entity entity = _entitiesFactory.CreateArcher(position, archerConfig, view);
-            _brainsFactory.CreateArcherBrain(entity, archerConfig.AttackRange, archerConfig.SpotRangeDistance);
+            _brainsFactory.CreateArcherBrain(entity, archerConfig.AttackRange);
             return entity;
         }
     }

@@ -75,9 +75,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
         }
 
 
-        public StateMachineBrain CreateSwordsmanBrain(Entity entity, float attackRange, float spotRangeDistance)
+        public StateMachineBrain CreateSwordsmanBrain(Entity entity, float attackRange)
         {
-            ITargetSelector targetSelector = new NearestDamageableTargetSelector(entity, spotRangeDistance);
+            ITargetSelector targetSelector = new NearestDamageableTargetSelector(entity);
 
             AIStateMachine behaviour = CreateChaseAndAttackStateMachine(entity, attackRange);
 
@@ -93,11 +93,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
             return brain;
         }
 
-        public StateMachineBrain CreateArcherBrain(Entity entity, float attackRange, float spotRangeDistance)
+        public StateMachineBrain CreateArcherBrain(Entity entity, float attackRange)
         {
             // Архитектурно лучник — это тот же самый "подбежать и атаковать", просто с большим attackRange.
             // Различие между видами врагов задаётся только через конфиг (EntityConfig), а не через отдельный тип мозга.
-            return CreateSwordsmanBrain(entity, attackRange, spotRangeDistance);
+            return CreateSwordsmanBrain(entity, attackRange);
         }
 
         private AIStateMachine CreateChaseAndAttackStateMachine(Entity entity, float attackRange)

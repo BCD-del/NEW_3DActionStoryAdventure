@@ -24,7 +24,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies.SpawnStrateg
             SwordsmanConfig swordsmanConfig = (SwordsmanConfig)config;
 
             Entity entity = _entitiesFactory.CreateSwordsman(position, swordsmanConfig, view);
-            _brainsFactory.CreateSwordsmanBrain(entity, swordsmanConfig.AttackRange, swordsmanConfig.SpotRangeDistance);
+            _brainsFactory.CreateSwordsmanBrain(entity, swordsmanConfig.AttackRange);
             return entity;
         }
     }
