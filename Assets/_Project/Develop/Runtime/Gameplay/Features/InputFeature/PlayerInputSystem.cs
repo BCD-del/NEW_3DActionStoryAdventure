@@ -41,10 +41,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
             _cameraService.Tick(deltaTime, lookInput, zoom);
 
             if (_input.IsAttackKeyPressed)
-            {
-                Debug.Log($"[PlayerInputSystem] IsAttackKeyPressed TRUE, invoking _startAttackRequest");
                 _startAttackRequest?.Invoke();
-            }
 
         }
 
