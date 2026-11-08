@@ -14,7 +14,6 @@ using Assets._Project.Develop.Runtime.Utilities.Reactive;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using Assets.CourseGame.Develop.Gameplay.Features.StatsFeature;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
 {
@@ -26,7 +25,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
         private readonly BrainsFactory _brainsFactory;
         private readonly ConfigsProviderService _configsProviderService;
         private readonly EntitiesLifeContext _entitiesLifeContext;
-        private readonly StatsUpgradeService _statsUpgradeService;
 
         public MainHeroFactory(DIContainer container)
         {
@@ -35,14 +33,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
             _brainsFactory = _container.Resolve<BrainsFactory>();
             _configsProviderService = _container.Resolve<ConfigsProviderService>();
             _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _statsUpgradeService = _container.Resolve<StatsUpgradeService>();
         }
 
         public Entity Create(Vector3 position, MonoEntity view = null)
         {
             MainHeroConfig config = _configsProviderService.GetConfig<MainHeroConfig>();
 
-            Entity entity = _entitiesFactory.CreateMainHero(position, config, GetStats(), view);
+            Entity entity = _entitiesFactory.CreateMainHero(position, config, GetStats(config), view);
 
             entity
                 .AddIsMainHero()
@@ -67,12 +64,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
         }
 
 
-        private Dictionary<StatTypes, float> GetStats()
+        private Dictionary<StatTypes, float> GetStats(MainHeroConfig config)
         {
             Dictionary<StatTypes, float> stats = new();
 
-            foreach (StatTypes statType in Enum.GetValues(typeof(StatTypes)))
-                stats.Add(statType, _statsUpgradeService.GetCurrentStatValueFor(statType));
+            // Stattы берутся напрямую из конфига героя — без системы апгрейда
+            stats.Add(StatTypes.MoveSpeed, config.MoveSpeed);
+            stats.Add(StatTypes.MaxHealth, config.MaxHealth);
+            stats.Add(StatTypes.Damage, config.InstantAttackDamage);
+            stats.Add(StatTypes.AttacksPerSecond, 1f);
 
             return stats;
         }
