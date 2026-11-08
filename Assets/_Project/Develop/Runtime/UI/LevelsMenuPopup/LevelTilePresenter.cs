@@ -74,7 +74,7 @@ namespace Assets._Project.Develop.Runtime.UI.LevelsMenuPopup
             }
 
             _coroutinesPerformer
-                .StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(_levelNumber)));
+                .StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.BigPinesForest, new GameplayInputArgs(_levelNumber)));
         }
     }
 }

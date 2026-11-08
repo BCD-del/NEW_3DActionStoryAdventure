@@ -62,7 +62,7 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
 
         private void OnStartGameButtonClicked()
         {
-            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(1)));
+            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.BigPinesForest, new GameplayInputArgs(1)));
         }
     }
 }

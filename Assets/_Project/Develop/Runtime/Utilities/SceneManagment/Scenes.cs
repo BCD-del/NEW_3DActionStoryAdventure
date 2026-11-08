@@ -6,6 +6,7 @@
         public const string Empty = "Empty";
         public const string MainMenu = "MainMenu";
         public const string Gameplay = "Gameplay";
+        public const string BigPinesForest = "BigPinesForest";
         public const string CharacterPreviewScene = "CharacterPreviewScene";
     }
 }
