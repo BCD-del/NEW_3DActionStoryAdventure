@@ -60,7 +60,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
         public bool SwitchTargetLeftPressed => _switchLeftAction != null && _switchLeftAction.WasPressedThisFrame();
 
-        public bool IsAttackKeyPressed => _isAttackKeyPressed != null && _isAttackKeyPressed.WasPressedThisFrame();
+        public bool IsAttackKeyPressed
+        {
+            get
+            {
+                bool result = _isAttackKeyPressed != null && _isAttackKeyPressed.WasPressedThisFrame();
+                if (result)
+                    Debug.Log($"[UnityInputService] IsAttackKeyPressed = TRUE (action: {(_isAttackKeyPressed != null ? _isAttackKeyPressed.name : "null")})");
+                return result;
+            }
+        }
        // public bool IsAttackKeyPressed => _playerInput.Desktop.Attack.IsPressed();
         // Вместо свойства .enabled вызываем методы .Enable() и .Disable()
         public bool IsEnabled

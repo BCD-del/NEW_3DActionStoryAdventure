@@ -33,6 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
 
         private void OnAttackRequest()
         {
+            Debug.Log($"[StartAttackSystem] OnAttackRequest called. _canStartAttack.Evaluate() = {_canStartAttack.Evaluate()}");
             if (_canStartAttack.Evaluate())
             {
                 _inAttackProcess.Value = true;
