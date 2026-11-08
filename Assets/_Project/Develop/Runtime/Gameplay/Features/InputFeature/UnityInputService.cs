@@ -60,7 +60,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
         public bool SwitchTargetLeftPressed => _switchLeftAction != null && _switchLeftAction.WasPressedThisFrame();
 
-        public bool IsAttackKeyPressed => _isAttackKeyPressed != null && _isAttackKeyPressed.IsPressed();
+        public bool IsAttackKeyPressed => _isAttackKeyPressed != null && _isAttackKeyPressed.WasPressedThisFrame();
        // public bool IsAttackKeyPressed => _playerInput.Desktop.Attack.IsPressed();
         // Вместо свойства .enabled вызываем методы .Enable() и .Disable()
         public bool IsEnabled
