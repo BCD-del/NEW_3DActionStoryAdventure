@@ -15,10 +15,11 @@ MonoBehaviour:
   <PrefabPath>k__BackingField: Entities/Swordsman
   <MoveSpeed>k__BackingField: 6
   <RotationSpeed>k__BackingField: 720
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 1000
   <DeathProcessTime>k__BackingField: 2
   <AttackRange>k__BackingField: 2
+  <SpotRangeDistance>k__BackingField: 6
   <AttackProcessTime>k__BackingField: 1
   <AttackDelayTime>k__BackingField: 0.35
   <AttackCooldown>k__BackingField: 0.5
-  <AttackDamage>k__BackingField: 25
+  <AttackDamage>k__BackingField: 0

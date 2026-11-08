@@ -17,6 +17,7 @@ namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
 
         [field: Header("Combat (дальний бой)")]
         [field: SerializeField, Min(0)] public float AttackRange { get; private set; } = 8f;
+        [field: SerializeField, Min(0)] public float SpotRangeDistance { get; private set; } = 12f; // дистанция, на которой лучник замечает игрока
         [field: SerializeField, Min(0)] public float AttackProcessTime { get; private set; } = 1.2f;
         [field: SerializeField, Min(0)] public float AttackDelayTime { get; private set; } = 0.6f;
         [field: SerializeField, Min(0)] public float AttackCooldown { get; private set; } = 1.5f;

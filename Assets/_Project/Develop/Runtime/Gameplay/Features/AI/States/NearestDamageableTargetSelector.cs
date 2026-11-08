@@ -13,31 +13,38 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
     {
         private Entity _source;
         private Transform _sourceTransform;
+        private readonly float _spotDistance;
 
-        public NearestDamageableTargetSelector(Entity entity)
+        public NearestDamageableTargetSelector(Entity entity, float spotDistance = 20f)
         {
             _source = entity;
             _sourceTransform = entity.Transform;
+            _spotDistance = spotDistance;
         }
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)
         {
+
             IEnumerable<Entity> selectedTargets = targets.Where(target =>
             {
                 bool result = target.HasComponent<TakeDamageRequest>();
 
-                if(target.TryGetCanApplyDamage(out ICompositeCondition canApplyDamage))
+                if (target.TryGetCanApplyDamage(out ICompositeCondition canApplyDamage))
                 {
                     result = result && canApplyDamage.Evaluate();
                 }
 
-                if(_source.TryGetTeam(out ReactiveVariable<Teams> sourceTeam)
+                if (_source.TryGetTeam(out ReactiveVariable<Teams> sourceTeam)
                 && target.TryGetTeam(out ReactiveVariable<Teams> targetTeam))
                 {
                     result = result && (sourceTeam.Value != targetTeam.Value);
                 }
 
                 result = result && (target != _source);
+
+                // НОВОЕ: цель слишком далеко — отбрасываем сразу
+                float distance = GetDistanceTo(target);
+                result = result && (distance <= _spotDistance);
 
                 return result;
             });
@@ -52,7 +59,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
             {
                 float distance = GetDistanceTo(target);
 
-                if(distance < minDistance)
+                if (distance < minDistance)
                 {
                     minDistance = distance;
                     closestTarget = target;

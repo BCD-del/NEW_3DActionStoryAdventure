@@ -34,8 +34,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Melee
 
         public MeleeAttackSystem(
             CollidersRegistryService collidersRegistry,
-            float radius = 1.8f,
-            float forwardOffset = 1f,
+            float radius = 2f,
+            float forwardOffset = 2f,
             float heightOffset = 0.9f)
         {
             _collidersRegistry = collidersRegistry;

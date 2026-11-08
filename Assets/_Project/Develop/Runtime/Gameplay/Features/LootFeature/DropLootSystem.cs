@@ -34,6 +34,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
             }
         }
 
-        private void DropLoot() => _dropLootService.DropLootFor(_entity);
+       // private void DropLoot() => _dropLootService.DropLootFor(_entity);
     }
 }
