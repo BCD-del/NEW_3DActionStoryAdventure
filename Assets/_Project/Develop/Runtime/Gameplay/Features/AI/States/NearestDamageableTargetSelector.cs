@@ -24,7 +24,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)
         {
-
             IEnumerable<Entity> selectedTargets = targets.Where(target =>
             {
                 bool result = target.HasComponent<TakeDamageRequest>();
@@ -35,15 +34,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
                 }
 
                 if (_source.TryGetTeam(out ReactiveVariable<Teams> sourceTeam)
-                && target.TryGetTeam(out ReactiveVariable<Teams> targetTeam))
+                    && target.TryGetTeam(out ReactiveVariable<Teams> targetTeam))
                 {
                     result = result && (sourceTeam.Value != targetTeam.Value);
                 }
 
                 result = result && (target != _source);
 
-                // НОВОЕ: цель слишком далеко — отбрасываем сразу
-                 float distance = GetDistanceTo(target);
+                float distance = GetDistanceTo(target);
                 result = result && (distance <= _spotDistance);
 
                 return result;
