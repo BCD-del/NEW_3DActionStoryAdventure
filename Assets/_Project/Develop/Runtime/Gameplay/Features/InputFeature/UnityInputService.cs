@@ -64,9 +64,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
         {
             get
             {
-                bool result = _isAttackKeyPressed != null && _isAttackKeyPressed.WasPressedThisFrame();
+                bool result = _isAttackKeyPressed != null && _isAttackKeyPressed.IsPressed();
                 if (result)
-                    Debug.Log($"[UnityInputService] IsAttackKeyPressed = TRUE (action: {(_isAttackKeyPressed != null ? _isAttackKeyPressed.name : "null")})");
+                    Debug.Log($"[UnityInputService] IsAttackKeyPressed = TRUE (IsPressed)");
                 return result;
             }
         }
