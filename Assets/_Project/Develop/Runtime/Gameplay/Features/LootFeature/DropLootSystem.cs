@@ -29,7 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
         {
             if (_dropLootCondition.Evaluate())
             {
-                DropLoot();
+              //  DropLoot();
                 _lootIsDropped.Value = true;
             }
         }

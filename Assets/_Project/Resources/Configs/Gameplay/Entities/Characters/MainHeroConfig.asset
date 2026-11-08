@@ -19,6 +19,6 @@ MonoBehaviour:
   <AttackDelayTime>k__BackingField: 0.75
   <AttackCooldown>k__BackingField: 0.5
   <InstantAttackDamage>k__BackingField: 50
-  <MaxHealth>k__BackingField: 20
+  <MaxHealth>k__BackingField: 150
   <DeathProcessTime>k__BackingField: 2
   <GravityForce>k__BackingField: 9.8

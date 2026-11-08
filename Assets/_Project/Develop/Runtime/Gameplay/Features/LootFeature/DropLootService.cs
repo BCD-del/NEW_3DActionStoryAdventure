@@ -17,21 +17,21 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
             _lootFactory = lootFactory;
         }
 
-        public void DropLootFor(Entity entity)
-        {
-            Transform entityTransform = entity.Transform;
+        //public void DropLootFor(Entity entity)
+        //{
+        //    Transform entityTransform = entity.Transform;
 
-            List<ExperienceLootConfig> expConfigs = _lootListConfig.LootConfigs
-                .Where(loot => loot.GetType() == typeof(ExperienceLootConfig))
-                .Cast<ExperienceLootConfig>()
-                .ToList();
+        //    List<ExperienceLootConfig> expConfigs = _lootListConfig.LootConfigs
+        //        .Where(loot => loot.GetType() == typeof(ExperienceLootConfig))
+        //        .Cast<ExperienceLootConfig>()
+        //        .ToList();
 
-            if (expConfigs.Count > 0)
-                DropExp(entityTransform.position, expConfigs[Random.Range(0, expConfigs.Count)]);
+        //    if (expConfigs.Count > 0)
+        //        DropExp(entityTransform.position, expConfigs[Random.Range(0, expConfigs.Count)]);
 
-            DropCoins(entityTransform.position);
-            DropHealth(entityTransform.position);
-        }
+        //    DropCoins(entityTransform.position);
+        //    DropHealth(entityTransform.position);
+        //}
 
         private void DropExp(Vector3 position, ExperienceLootConfig experienceLootConfig)
         {
