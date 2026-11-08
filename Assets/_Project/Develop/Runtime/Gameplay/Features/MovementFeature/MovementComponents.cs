@@ -5,7 +5,11 @@ using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
 {
-  
+    public class SpotDistance : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
+    }
+
     public class StartClimbingRequest : IEntityComponent
     {
         public ReactiveEvent Value;
@@ -29,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
     public class GravityForce : IEntityComponent
     {
         public ReactiveVariable<float> Value;
-    }  
+    }
 
     public class MoveDirection : IEntityComponent
     {

@@ -43,7 +43,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
                 result = result && (target != _source);
 
                 // НОВОЕ: цель слишком далеко — отбрасываем сразу
-                float distance = GetDistanceTo(target);
+                 float distance = GetDistanceTo(target);
                 result = result && (distance <= _spotDistance);
 
                 return result;

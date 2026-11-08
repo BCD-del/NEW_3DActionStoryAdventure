@@ -253,6 +253,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             AttachView(entity, position, config.PrefabPath, view);
 
             entity
+                .AddSpotDistance(new ReactiveVariable<float>(config.SpotRangeDistance))
                 .AddMoveDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
                 .AddIsMoving()
