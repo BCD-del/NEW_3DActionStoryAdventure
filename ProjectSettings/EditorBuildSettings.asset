@@ -17,6 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Gameplay.unity
     guid: 2029eb6cff4a0054d903cca04af62027
+  - enabled: 1
+    path: Assets/_Project/Scenes/BigPinesForest.unity
+    guid: b399d521532705a4ebd01cbb04ac362a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_UseUCBPForAssetBundles: 0

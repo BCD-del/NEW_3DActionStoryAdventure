@@ -13,6 +13,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
         private ReactiveVariable<Vector3> _moveDirection;
         private ReactiveVariable<Vector3> _rotationDirection;
+        private ReactiveEvent _startAttackRequest;
 
         public PlayerInputSystem(IInputService input, CameraService cameraService)
         {
@@ -24,6 +25,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
         {
             _moveDirection = entity.MoveDirection;
             _rotationDirection = entity.RotationDirection;
+            _startAttackRequest = entity.StartAttackRequest;
         }
 
         public void OnUpdate(float deltaTime)
@@ -34,16 +36,21 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
             UpdateOrbitMovement(moveInput);
 
             Vector2 lookInput = _input.LookDirection;
-            float zoom = _input.ZoomInput; 
+            float zoom = _input.ZoomInput;
 
             _cameraService.Tick(deltaTime, lookInput, zoom);
+
+            if (_input.IsAttackKeyPressed)
+
+                _startAttackRequest?.Invoke();
+
         }
 
         private void UpdateOrbitMovement(Vector2 moveInput)
         {
             Vector3 direction = CalculateCameraRelativeDirection(moveInput);
             _moveDirection.Value = direction;
-            _rotationDirection.Value = direction; 
+            _rotationDirection.Value = direction;
         }
 
         private Vector3 CalculateCameraRelativeDirection(Vector2 input)
@@ -58,5 +65,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
             return forward * input.y + right * input.x;
         }
+
+
     }
 }

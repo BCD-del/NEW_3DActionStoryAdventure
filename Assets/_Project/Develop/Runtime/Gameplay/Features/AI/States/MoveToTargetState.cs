@@ -28,7 +28,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
         {
             base.Exit();
 
-            _isMoving.Value = false;
+            _isMoving.Value = false; 
         }
 
         public void Update(float deltaTime)

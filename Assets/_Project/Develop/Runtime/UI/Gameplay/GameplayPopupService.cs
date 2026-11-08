@@ -36,7 +36,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay
             return popup;
         }
 
-        public DefeatPopupPresenter OpenDefeatPopup(Action closedCallback = null)
+       /* public DefeatPopupPresenter OpenDefeatPopup(Action closedCallback = null)
         {
             DefeatPopupView view = ViewsFactory.Create<DefeatPopupView>(ViewIDs.DefeatPopup, PopupLayer);
 
@@ -45,7 +45,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay
             OnPopupCreated(popup, view, closedCallback);
 
             return popup;
-        }
+        }*/
 
         public AbilitySelectPopupPresenter OpenAbilitySelectPopup(
             Entity entity, 

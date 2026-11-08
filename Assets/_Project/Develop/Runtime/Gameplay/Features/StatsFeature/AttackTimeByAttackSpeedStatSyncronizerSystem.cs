@@ -1,4 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
 using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
 using Assets._Project.Develop.Runtime.Utilities.Reactive;
@@ -47,7 +47,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature
             float totalTimeRatio = targetTotalTime / totalBaseTime;
 
             _attackProcessModifiedTime.Value = _attackProcessInitialTime.Value * totalTimeRatio;
-            _attackCooldownModifiedTime.Value = _attackCooldownInitialTime.Value * totalTimeRatio;
+            _attackCooldownModifiedTime.Value = _attackCooldownInitialTime.Value;
             _attackDelayModifiedTime.Value = _attackDelayInitialTime.Value * totalTimeRatio;
         }
     }

@@ -17,6 +17,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
         private readonly InputAction _lockOnAction;
         private readonly InputAction _switchRightAction;
         private readonly InputAction _switchLeftAction;
+        private readonly InputAction _isAttackKeyPressed;
 
         public UnityInputService(PlayerInput playerInput)
         {
@@ -27,6 +28,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
             _lookAction = playerInput.asset.FindAction("Look");
             _zoomAction = playerInput.asset.FindAction("Zoom");
             _lockOnAction = playerInput.asset.FindAction("LockOn");
+            _isAttackKeyPressed = playerInput.asset.FindAction("Attack");
 
             // Используем безопасный поиск, так как этих экшенов пока нет в ассете
             _switchRightAction = playerInput.asset.FindAction("SwitchTargetRight");
@@ -58,6 +60,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
         public bool SwitchTargetLeftPressed => _switchLeftAction != null && _switchLeftAction.WasPressedThisFrame();
 
+        public bool IsAttackKeyPressed => _isAttackKeyPressed != null && _isAttackKeyPressed.WasPressedThisFrame();
+       // public bool IsAttackKeyPressed => _playerInput.Desktop.Attack.IsPressed();
         // Вместо свойства .enabled вызываем методы .Enable() и .Disable()
         public bool IsEnabled
         {
@@ -70,5 +74,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
                     _playerInput.Disable();
             }
         }
+
+
     }
 }

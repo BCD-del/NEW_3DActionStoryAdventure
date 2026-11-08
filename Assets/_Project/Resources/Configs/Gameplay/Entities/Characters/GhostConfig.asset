@@ -16,6 +16,6 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 9
   <RotationSpeed>k__BackingField: 900
   <MaxHealth>k__BackingField: 100
-  <BodyContactDamage>k__BackingField: 50
+  <BodyContactDamage>k__BackingField: 5
   <DeathProcessTime>k__BackingField: 2
   <SpawnProcessTime>k__BackingField: 2

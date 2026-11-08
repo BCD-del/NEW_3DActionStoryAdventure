@@ -21,7 +21,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.States
 
             Debug.Log("ПОРАЖЕНИЕ!");
 
-            _popupService.OpenDefeatPopup();
+         //   _popupService.OpenDefeatPopup();
         }
 
         public void Update(float deltaTime)

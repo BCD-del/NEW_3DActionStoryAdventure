@@ -81,6 +81,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddAttackCooldownCurrentTime()
                 .AddInAttackCooldown()
                 .AddAttacksPerSecond(new ReactiveVariable<float>(baseStats[StatTypes.AttacksPerSecond]))
+                .AddContactsDetectingMask(Layers.CharactersMask)
+                .AddContactCollidersBuffer(new Buffer<Collider>(64))
+                .AddContactEntitiesBuffer(new Buffer<Entity>(64))
+                .AddBodyContactDamage(new ReactiveVariable<float>(baseStats[StatTypes.Damage]))          
                 //Моё  
                 .AddStartClimbingRequest()
                 .AddStartClimbingEvent()
@@ -150,6 +154,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddSystem(new AttackCooldownTimerSystem())
 
                 .AddSystem(new ApplyDamageSystem())
+
+                .AddSystem(new BodyContactsDetectingSystem())
+                .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
+                .AddSystem(new DealDamageOnContactSystem())                .AddSystem(new ApplyDamageSystem())
 
                 .AddSystem(new DeathSystem())
                 .AddSystem(new DisableCollidersOnDeathSystem())

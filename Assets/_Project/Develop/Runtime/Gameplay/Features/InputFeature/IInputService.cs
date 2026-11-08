@@ -8,7 +8,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
     /// </summary>
     public interface IInputService
     {
-        bool IsEnabled { get; set;  } 
+        bool IsEnabled { get; set; }
 
         // ── Существующие (движение) ────────────────────────────────────────────
         Vector3 MoveDirection { get; }
@@ -34,5 +34,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
 
         /// <summary>Нажатие переключения цели влево.</summary>
         bool SwitchTargetLeftPressed { get; }
+
+        ///<summary>Атака<summary>
+        bool IsAttackKeyPressed { get; }
+
     }
 }
